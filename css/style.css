@@ -1,0 +1,11 @@
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 250px);
+    gap: 50px;
+}
+
+.book {
+    padding: 20px;
+    border: 5px solid aqua;
+    border-radius: 10px;
+}
