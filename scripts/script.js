@@ -15,13 +15,29 @@ function addBookToLibrary(book) {
     myLibrary.push(book);
 }
 
+const title = document.querySelector("#title");
+const author = document.querySelector("#author");
+const pages = document.querySelector("#pages");
+const read = document.querySelector("#read");
+const addToLibraryBtn = document.querySelector(".add");
+
+addToLibraryBtn.addEventListener('click', () => {
+    const book = new Book(title.value, author.value, pages.value, read.value);
+    addBookToLibrary(book);
+    displayBook(book);
+});
+
+function displayBook(book) {
+    // create book card
+    const card = document.createElement('div');
+    card.classList.add('book');
+    card.textContent = book.info();
+    container.appendChild(card);
+};
+
 function displayBooks() {
     myLibrary.forEach(book => {
-        // create book card
-        const card = document.createElement('div');
-        card.classList.add('book');
-        card.textContent = book.info();
-        container.appendChild(card);
+        displayBook(book);
     }); 
 }
 
