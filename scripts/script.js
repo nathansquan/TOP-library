@@ -25,6 +25,21 @@ function displayBooks() {
     }); 
 }
 
+// open popup form
+const newBookBtn = document.querySelector('.new-book-btn > button');
+
+newBookBtn.addEventListener('click', () => {
+    document.getElementById("new-book-form").style.display = "block";
+});
+
+// close popup form
+const cancelBtn = document.querySelector('.cancel');
+
+cancelBtn.addEventListener('click', () => {
+    document.getElementById("new-book-form").style.display = "none";
+});
+
+
 // sample data
 const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkein', 295, 'not read yet');
 const theHobbit2 = new Book('The Hobbit2', 'J.R.R. Tolkein', 295, 'not read yet');
