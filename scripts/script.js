@@ -1,17 +1,17 @@
 let myLibrary = [];
 
-function Book(title, author, pages, read) {
+function Book(title, author, pages, readingStatus) {
     this.title = title
     this.author = author
     this.pages = pages
-    this.read = read
+    this.readingStatus = readingStatus
 }
 
 Book.prototype.info = function() {
     return `Title: ${this.title} <br>
             Author: ${this.author} <br>
             Pages: ${this.pages} <br>
-            Read: ${this.read}`;
+            Read: ${this.readingStatus}`;
 }
 
 function addBookToLibrary(book) {
@@ -21,11 +21,14 @@ function addBookToLibrary(book) {
 const title = document.querySelector("#title");
 const author = document.querySelector("#author");
 const pages = document.querySelector("#pages");
-const read = document.querySelector("#read");
+const read = document.querySelector("#radio-btns");
+const form = document.querySelector("form");
 const addToLibraryBtn = document.querySelector(".add");
 
 addToLibraryBtn.addEventListener('click', () => {
-    const book = new Book(title.value, author.value, pages.value, read.value);
+    const data = new FormData(form);
+    const book = new Book();
+    data.forEach((value, key) => (book[key] = value));
     addBookToLibrary(book);
     displayBook(book);
 });
