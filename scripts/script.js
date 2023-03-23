@@ -8,7 +8,10 @@ function Book(title, author, pages, read) {
 }
 
 Book.prototype.info = function() {
-    return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`
+    return `Title: ${this.title} <br>
+            Author: ${this.author} <br>
+            Pages: ${this.pages} <br>
+            Read: ${this.read}`;
 }
 
 function addBookToLibrary(book) {
@@ -31,7 +34,7 @@ function displayBook(book) {
     // create book card
     const card = document.createElement('div');
     card.classList.add('book');
-    card.textContent = book.info();
+    card.innerHTML = book.info();
     container.appendChild(card);
 };
 
