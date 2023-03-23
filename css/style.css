@@ -31,6 +31,8 @@
 
 /* style form container */
 .form-container {
+    display: flex;
+    flex-direction: column;
     max-width: 300px;
     padding: 10px;
     background-color: white;
@@ -38,11 +40,23 @@
 
 /* Full-width input fields */
 .form-container input[type=text] {
-  width: 90%;
   padding: 15px;
   margin: 5px 0 22px 0;
   border: none;
   background: #f1f1f1;
+}
+
+.form-container input[type=checkbox] {
+    display: flex;
+    margin: auto;
+}
+
+/* popup form data entry buttons */
+#form-popup-btns {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 15px;
+    margin: 5px 5px;
 }
 
 /* When the inputs get focus, do something */
