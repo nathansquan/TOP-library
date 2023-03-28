@@ -1,5 +1,3 @@
-let myLibrary = [];
-
 function Book(title, author, pages, read) {
     this.title = title
     this.author = author
@@ -10,21 +8,6 @@ function Book(title, author, pages, read) {
 function addBookToLibrary(book) {
     myLibrary.push(book);
 }
-
-const title = document.querySelector("#title");
-const author = document.querySelector("#author");
-const pages = document.querySelector("#pages");
-const read = document.querySelector("#radio-btns");
-const form = document.querySelector("form");
-const addToLibraryBtn = document.querySelector(".add");
-
-addToLibraryBtn.addEventListener('click', () => {
-    const data = new FormData(form);
-    const book = new Book();
-    data.forEach((value, key) => (book[key] = value));
-    addBookToLibrary(book);
-    displayBook(book);
-});
 
 function displayBook(book) {
     // create book card
@@ -42,10 +25,25 @@ function displayBook(book) {
 };
 
 function displayBooks() {
-    myLibrary.forEach(book => {
-        displayBook(book);
-    }); 
+    myLibrary.forEach(book => displayBook(book)); 
 }
+
+let myLibrary = [];
+const container = document.querySelector('.container');
+const title = document.querySelector("#title");
+const author = document.querySelector("#author");
+const pages = document.querySelector("#pages");
+const read = document.querySelector("#radio-btns");
+const form = document.querySelector("form");
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const book = new Book();
+    data.forEach((value, key) => (book[key] = value));
+    addBookToLibrary(book);
+    displayBook(book);
+});
 
 // open popup form
 const newBookBtn = document.querySelector('.new-book-btn > button');
@@ -72,6 +70,5 @@ addBookToLibrary(theHobbit2);
 addBookToLibrary(theHobbit3);
 
 
-const container = document.querySelector('.container');
 
 displayBooks();
