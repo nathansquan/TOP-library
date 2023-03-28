@@ -1,17 +1,10 @@
 let myLibrary = [];
 
-function Book(title, author, pages, readingStatus) {
+function Book(title, author, pages, read) {
     this.title = title
     this.author = author
     this.pages = pages
-    this.readingStatus = readingStatus
-}
-
-Book.prototype.info = function() {
-    return `Title: ${this.title} <br>
-            Author: ${this.author} <br>
-            Pages: ${this.pages} <br>
-            Read: ${this.readingStatus}`;
+    this.read = read
 }
 
 function addBookToLibrary(book) {
@@ -36,9 +29,16 @@ addToLibraryBtn.addEventListener('click', () => {
 function displayBook(book) {
     // create book card
     const card = document.createElement('div');
+    const ul = document.createElement('ul');
     card.classList.add('book');
-    card.innerHTML = book.info();
+    card.appendChild(ul);
     container.appendChild(card);
+
+    for (const property in book) {
+        const li = document.createElement('li');
+        li.innerHTML = `${property}: ${book[property]}`;
+        ul.appendChild(li);
+    }
 };
 
 function displayBooks() {
