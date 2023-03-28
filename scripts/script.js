@@ -12,8 +12,12 @@ function addBookToLibrary(book) {
 function displayBook(book) {
     // create book card
     const card = document.createElement('div');
+    const removeBtn = document.createElement('button');
+    removeBtn.innerText = "X";
+    removeBtn.classList = "remove-book-btn";
     const ul = document.createElement('ul');
     card.classList.add('book');
+    card.appendChild(removeBtn);
     card.appendChild(ul);
     container.appendChild(card);
 
