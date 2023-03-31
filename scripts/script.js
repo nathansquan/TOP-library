@@ -5,10 +5,6 @@ function Book(title, author, pages, read) {
     this.read = read
 }
 
-function addBookToLibrary(book) {
-    myLibrary.push(book);
-}
-
 function displayBook(book) {
     // create book card
     const card = document.createElement('div');
@@ -21,6 +17,11 @@ function displayBook(book) {
     card.appendChild(ul);
     container.appendChild(card);
 
+    // associate DOM elements to book object
+    const lastIndex = myLibrary.length - 1;
+    card.dataset.bookId = lastIndex.toString();
+
+    // build list of book info
     for (const property in book) {
         const li = document.createElement('li');
         li.innerHTML = `${property}: ${book[property]}`;
@@ -31,6 +32,7 @@ function displayBook(book) {
 function displayBooks() {
     myLibrary.forEach(book => displayBook(book)); 
 }
+
 
 let myLibrary = [];
 const container = document.querySelector('.container');
@@ -45,9 +47,12 @@ form.addEventListener('submit', (e) => {
     const data = new FormData(form);
     const book = new Book();
     data.forEach((value, key) => (book[key] = value));
-    addBookToLibrary(book);
+    myLibrary.push(book);
     displayBook(book);
 });
+
+// remove book
+
 
 // open popup form
 const newBookBtn = document.querySelector('.new-book-btn > button');
@@ -69,9 +74,6 @@ const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkein', 295, 'not read yet');
 const theHobbit2 = new Book('The Hobbit2', 'J.R.R. Tolkein', 295, 'not read yet');
 const theHobbit3 = new Book('The Hobbit3', 'J.R.R. Tolkein', 295, 'not read yet');
 
-addBookToLibrary(theHobbit);
-addBookToLibrary(theHobbit2);
-addBookToLibrary(theHobbit3);
 
 
 
