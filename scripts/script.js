@@ -33,6 +33,19 @@ function displayBooks() {
     myLibrary.forEach(book => displayBook(book)); 
 }
 
+function updateLibrary() {
+    removeBookBtns = document.querySelectorAll(".remove-book-btn");
+}
+
+// remove book
+function removeBook() {
+    removeBookBtns = document.querySelectorAll(".remove-book-btn");
+    removeBookBtns.forEach((btn) => {
+        const cardToRemove = btn.parentElement;
+        cardToRemove.remove;
+        removeBookBtns = document.querySelectorAll(".remove-book-btn");
+    });
+}
 
 let myLibrary = [];
 const container = document.querySelector('.container');
@@ -41,6 +54,19 @@ const author = document.querySelector("#author");
 const pages = document.querySelector("#pages");
 const read = document.querySelector("#radio-btns");
 const form = document.querySelector("form");
+let removeBookBtns = document.querySelectorAll(".remove-book-btn");
+
+// when i click on a x button, that card will be removed and the book data will
+// be removed from the myLibrary array
+// use event bubbling to add event listener to each x button in a new card created
+container.addEventListener('click', (e) => {
+    if (e.target.classList.contains("remove-book-btn")) {
+        const cardToRemove = e.target.parentElement;
+        cardToRemove.remove();
+    }
+});
+
+
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -49,9 +75,8 @@ form.addEventListener('submit', (e) => {
     data.forEach((value, key) => (book[key] = value));
     myLibrary.push(book);
     displayBook(book);
+    updateLibrary();
 });
-
-// remove book
 
 
 // open popup form
@@ -67,14 +92,5 @@ const cancelBtn = document.querySelector('.cancel');
 cancelBtn.addEventListener('click', () => {
     document.getElementById("new-book-form").style.display = "none";
 });
-
-
-// sample data
-const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkein', 295, 'not read yet');
-const theHobbit2 = new Book('The Hobbit2', 'J.R.R. Tolkein', 295, 'not read yet');
-const theHobbit3 = new Book('The Hobbit3', 'J.R.R. Tolkein', 295, 'not read yet');
-
-
-
 
 displayBooks();
