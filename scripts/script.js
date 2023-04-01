@@ -29,14 +29,6 @@ function displayBook(book) {
     }
 };
 
-function displayBooks() {
-    myLibrary.forEach(book => displayBook(book)); 
-}
-
-function updateLibrary() {
-    removeBookBtns = document.querySelectorAll(".remove-book-btn");
-}
-
 let myLibrary = [];
 const container = document.querySelector('.container');
 const title = document.querySelector("#title");
@@ -57,8 +49,7 @@ container.addEventListener('click', (e) => {
     }
 });
 
-
-
+// new book submit button event listener
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     const data = new FormData(form);
@@ -66,7 +57,6 @@ form.addEventListener('submit', (e) => {
     data.forEach((value, key) => (book[key] = value));
     myLibrary.push(book);
     displayBook(book);
-    updateLibrary();
 });
 
 
@@ -84,4 +74,3 @@ cancelBtn.addEventListener('click', () => {
     document.getElementById("new-book-form").style.display = "none";
 });
 
-displayBooks();
