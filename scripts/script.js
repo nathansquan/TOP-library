@@ -37,16 +37,6 @@ function updateLibrary() {
     removeBookBtns = document.querySelectorAll(".remove-book-btn");
 }
 
-// remove book
-function removeBook() {
-    removeBookBtns = document.querySelectorAll(".remove-book-btn");
-    removeBookBtns.forEach((btn) => {
-        const cardToRemove = btn.parentElement;
-        cardToRemove.remove;
-        removeBookBtns = document.querySelectorAll(".remove-book-btn");
-    });
-}
-
 let myLibrary = [];
 const container = document.querySelector('.container');
 const title = document.querySelector("#title");
@@ -56,13 +46,14 @@ const read = document.querySelector("#radio-btns");
 const form = document.querySelector("form");
 let removeBookBtns = document.querySelectorAll(".remove-book-btn");
 
-// when i click on a x button, that card will be removed and the book data will
-// be removed from the myLibrary array
+// remove book
 // use event bubbling to add event listener to each x button in a new card created
 container.addEventListener('click', (e) => {
     if (e.target.classList.contains("remove-book-btn")) {
         const cardToRemove = e.target.parentElement;
+        const index = cardToRemove.dataset.bookId;
         cardToRemove.remove();
+        myLibrary[index] = null;
     }
 });
 
