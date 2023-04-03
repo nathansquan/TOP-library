@@ -55,7 +55,6 @@ const author = document.querySelector("#author");
 const pages = document.querySelector("#pages");
 const read = document.querySelector("#radio-btns");
 const form = document.querySelector("form");
-let removeBookBtns = document.querySelectorAll(".remove-book-btn");
 
 // remove book
 // use event bubbling to add event listener to each x button in a new card created
@@ -65,6 +64,24 @@ container.addEventListener('click', (e) => {
         const index = cardToRemove.dataset.bookId;
         cardToRemove.remove();
         myLibrary[index] = null;
+    }
+});
+
+// toggle read status event listener
+container.addEventListener('click', (e) => {
+    if (e.target.classList.contains("toggle-read-btn")) {
+        const card = e.target.parentElement;
+        const ul = card.children[1];
+        const readStatus = ul.lastChild;
+        const index = card.dataset.bookId;
+        const book = myLibrary[index];
+        book.toggleRead(index);
+
+        for (const property in book) {
+            if (property === "read") {
+                readStatus.innerHTML = `${property}: ${book[property]}`;
+            }
+        }
     }
 });
 
