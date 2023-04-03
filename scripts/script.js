@@ -5,6 +5,19 @@ function Book(title, author, pages, read) {
     this.read = read
 }
 
+Book.prototype.toggleRead = function (libraryIndex) {
+    const book = myLibrary[libraryIndex];
+    const readStatus = ["Not read yet", "In progress", "Read"];
+    
+    if (book.read === readStatus[0]) {
+        book.read = readStatus[1];
+    } else if (book.read === readStatus[1]) {
+        book.read = readStatus[2];
+    } else if (book.read === readStatus[2]) {
+        book.read = readStatus[0];
+    }
+}
+
 function displayBook(book) {
     // create book card
     const card = document.createElement('div');
@@ -27,9 +40,11 @@ function displayBook(book) {
 
     // build list of book info
     for (const property in book) {
-        const li = document.createElement('li');
-        li.innerHTML = `${property}: ${book[property]}`;
-        ul.appendChild(li);
+        if (property !== "toggleRead") {
+            const li = document.createElement('li');
+            li.innerHTML = `${property}: ${book[property]}`;
+            ul.appendChild(li);
+        }
     }
 };
 
