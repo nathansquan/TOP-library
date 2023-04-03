@@ -12,9 +12,13 @@ function displayBook(book) {
     removeBtn.innerText = "X";
     removeBtn.classList = "remove-book-btn";
     const ul = document.createElement('ul');
+    const toggleReadBtn = document.createElement('button');
+    toggleReadBtn.innerText = "Toggle read status";
+    toggleReadBtn.classList = "toggle-read-btn";
     card.classList.add('book');
     card.appendChild(removeBtn);
     card.appendChild(ul);
+    card.appendChild(toggleReadBtn);
     container.appendChild(card);
 
     // associate DOM elements to book object
